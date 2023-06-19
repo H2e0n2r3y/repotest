@@ -1,0 +1,33 @@
+---
+ - name: install web and db servers
+   hosts: webserver
+   remote_user: vagrant
+   become: yes 
+   tasks:
+
+  - name: Ensure apache is at the latest version
+    yum:
+      name: httpd
+      state: latest
+  - name: make sure httpd is running
+    service:
+     name: httpd
+     state: running    
+  - name: ensure mysql is installed
+    yum:
+     name: httpd
+     status: latest
+  - name: install db servers
+    hosts: dbservers
+    remote_user: vagrant
+    tasks:
+
+  - name: Ensure apache is at the latest version
+    yum:
+      name: httpd
+      state: latest
+  - name: make sure mysql is running
+    service:
+     name: mysql
+     state: runing 
+
